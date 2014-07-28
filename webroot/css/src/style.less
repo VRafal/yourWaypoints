@@ -1,0 +1,32 @@
+/* ------------------------------------------------------------------------------------------------------------
+ *	VARs
+ * ------------------------------------------------------------------------------------------------------------ */
+@colorBody: #fff;
+@colorHref: #a73c02;
+@colorH1: #494949;
+
+@contentFontFace: open_sansregular, Verdana, sans-serif;
+
+
+/* ------------------------------------------------------------------------------------------------------------
+ *	BODY
+ * ------------------------------------------------------------------------------------------------------------ */
+body { background: @colorBody; }
+
+a { color: @colorHref; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:visited { color: lighten(@colorHref, 8%); }
+
+h1 { color: @colorH1; }
+h1 span { font-weight: normal; color: lighten(@colorH1, 20%); }
+
+h4 {}
+h4 span { font-weight: normal; }
+
+
+/* ------------------------------------------------------------------------------------------------------------
+ *	LAYOUT
+ * ------------------------------------------------------------------------------------------------------------ */
+#container { font: 0.9em/1.7em @contentFontFace; color: #262c35; }
+.wraper { max-width: 1290px; padding: 0; margin: 0 auto; overflow: hidden; position: relative; background: darken(@colorBody, 2%); }
+.bigWraper { width: 100%; margin: 0 auto; }
