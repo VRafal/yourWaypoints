@@ -1,14 +1,21 @@
 var pm = angular.module('poimod', ['ngRoute']);
+
 pm.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/view1', {
-		templateUrl: 'views/index.html',
-		controller: 'MyCtrl1'
-	});
-	$routeProvider.when('/view2', {
-		templateUrl: 'partials/partial2.html',
-		controller: 'MyCtrl2'
+	$routeProvider.when('/', {});
+	$routeProvider.when('/editItem/:id', {
+		templateUrl: 'views/editItem.html',
+		controller: 'editItem'
 	});
 	$routeProvider.otherwise({
-		redirectTo: '/view1'
+		redirectTo: '/'
 	});
 }]);
+
+pm.controller('appWraper', function($scope, $locale) {
+	//console.log($scope);
+});
+
+pm.controller('MyCtrl2', function($scope, $locale) {
+	//console.log($scope);
+	$scope.ee = "ciach";
+});
