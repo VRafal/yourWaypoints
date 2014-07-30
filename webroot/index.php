@@ -21,19 +21,31 @@
 	<![endif]-->
 
 	<div id="#container">
-		<div id="googleMap" latitude="43.074688" longitude="-89.384294" ng-controller="map"></div>
+		<div id="googleMap" latitude="51.111681" longitude="17.069111" ng-controller="map"></div>
 
-		<section id="itemList" ng-controller="itemsList" class="panel panel-primary">
-			<header class="panel-heading">Panel heading without title</header>
+		<section id="weypointsList" ng-controller="weypointsList" class="panel panel-primary">
+			<header class="panel-heading">Waypoints</header>
 			<div class="panel-body">
-				<input name="sdfs" />
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" ng-click="addNew()">Add new</button>
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu">
+						<li><a href="#/upload" title="Upload new list from local file">Upload</a></li>
+						<li><a href="#/save" title="Save this list as file">Save</a></li>
+						<li class="divider"></li>
+						<li><a href="sdfsd">Clear list</a></li>
+					</ul>
+				</div>
 			</div>
 			<div class="list-group">
-				<a ng-repeat="item in items" ng-click="click(item)" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
+				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
 			</div>
 		</section>
 
-		<div class="wraper ng-view">view</div>
+		<div id="viewPanel" class="panel panel-primary ng-view">view</div>
 	</div>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -41,10 +53,12 @@
 	<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="/js/vendor/angular.min.js"></script>
 	<script src="/js/vendor/angular-route.min.js"></script>
+	<script src="/js/vendor/angular-file-upload.min.js"></script>
 	<script src="/js/app.js"></script>
-	<script src="/js/controllers/editItem.js"></script>
-	<script src="/js/controllers/itemsList.js"></script>
+	<script src="/js/controllers/editWaypoint.js"></script>
+	<script src="/js/controllers/weypointsList.js"></script>
 	<script src="/js/controllers/map.js"></script>
+	<script src="/js/controllers/upload.js"></script>
 	<script src="/js/services/waypointsService.js"></script>
 </body>
 </html>

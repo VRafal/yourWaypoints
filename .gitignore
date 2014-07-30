@@ -6,3 +6,5 @@ ex
 wp
 /nbproject/private/
 nbproject
+/webroot/uploads/*
+!/webroot/uploads/index.php

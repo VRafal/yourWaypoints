@@ -1,0 +1,12 @@
+
+	<header class="panel-heading">Upload weypoints</header>
+	<div class="panel-body" nv-file-drop="" uploader="uploader">
+		<p>Upload your GPX file.</p>
+		<form>
+			<div class="fileInput">
+				<input type="file" class="filestyle" data-buttonText="Find file" nv-file-select="" uploader="uploader" />
+			</div>
+			<button type="button" class="btn btn-success" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">Upload</button>
+			<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+		</form>
+	</div>

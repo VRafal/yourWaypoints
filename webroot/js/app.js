@@ -1,21 +1,20 @@
-var pm = angular.module('poimod', ['ngRoute']);
-
-pm.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/', {});
-	$routeProvider.when('/editItem/:id', {
-		templateUrl: 'views/editItem.html',
-		controller: 'editItem'
-	});
-	$routeProvider.otherwise({
-		redirectTo: '/'
-	});
-}]);
-
-pm.controller('appWraper', function($scope, $locale) {
-	//console.log($scope);
-});
-
-pm.controller('MyCtrl2', function($scope, $locale) {
-	//console.log($scope);
-	$scope.ee = "ciach";
-});
+angular.module('poimod', ['ngRoute', 'angularFileUpload'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/', {})
+			.when('/edit/:id', {
+				templateUrl: 'views/editWaypoint.html',
+				controller: 'editWaypoint'
+			})
+			.when('/upload', {
+				templateUrl: 'views/upload.html',
+				controller: 'upload'
+			})
+			.when('/save', {
+				templateUrl: 'views/save.html',
+				controller: 'editItem'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+	}]);
