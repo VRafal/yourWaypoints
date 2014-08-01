@@ -1,4 +1,4 @@
-angular.module('poimod').controller('map', function($scope, waypointsService, $attrs) {
+angular.module('poimod').controller('map', function($scope, waypointsService, mapService, $attrs) {
 	var mapArgs = {
 		zoom: 15,
 		center: new google.maps.LatLng($attrs.latitude, $attrs.longitude),
@@ -26,4 +26,6 @@ angular.module('poimod').controller('map', function($scope, waypointsService, $a
 	// }];
 
 	var map = new google.maps.Map(document.getElementById('googleMap'), mapArgs);
+	//mapService.setMap(map);
+
 });

@@ -4,17 +4,23 @@ angular.module('poimod').service('waypointsService', function() {
 	this.nextId = 3;
 	this.waypoints = [{
 		id: 1,
-		name: 'pierwszy'
+		name: 'pierwszy',
+		lat: '50.312858',
+		lon: '16.466479'
 	}, {
 		id: 2,
-		name: 'drugi'
+		name: 'drugi',
+		lat: '50.168971',
+		lon: '16.704033'
 	}];
 
-	this.add = function(name) {
-		this.waypoints.push({
-			id: this.nextId,
-			name: name
-		});
+	this.add = function(waypoint) {
+		if (waypoint.name == null) {
+			waypoint.name = "New waypoint " + this.nextId;
+		}
+
+		waypoint.id = this.nextId;
+		this.waypoints.push(waypoint);
 		this.nextId++;
 	};
 
@@ -23,5 +29,10 @@ angular.module('poimod').service('waypointsService', function() {
 			if (this.waypoints[q].id == id) return this.waypoints[q];
 		}
 		return null;
+	}
+
+	this.clear = function(){
+		this.waypoints.length = 0;
+		this.nextId = 1;
 	}
 });

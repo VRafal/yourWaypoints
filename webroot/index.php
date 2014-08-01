@@ -36,12 +36,19 @@
 						<li><a href="#/upload" title="Upload new list from local file">Upload</a></li>
 						<li><a href="#/save" title="Save this list as file">Save</a></li>
 						<li class="divider"></li>
-						<li><a href="sdfsd">Clear list</a></li>
+						<li><a href="#/" ng-click="clearList()">Clear list</a></li>
 					</ul>
 				</div>
+				<!-- div class="input-group">
+					<input type="text" ng-model="qeryFilter" class="form-control" placeholder="filter" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Clear</button>
+					</span>
+				</div -->
 			</div>
 			<div class="list-group">
 				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
+				<p ng-show="!items.length" class="list-group-item">List empty</p>
 			</div>
 		</section>
 
@@ -60,5 +67,6 @@
 	<script src="/js/controllers/map.js"></script>
 	<script src="/js/controllers/upload.js"></script>
 	<script src="/js/services/waypointsService.js"></script>
+	<script src="/js/services/mapService.js"></script>
 </body>
 </html>

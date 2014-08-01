@@ -3,7 +3,7 @@
  *
  * @lib: https://github.com/nervgh/angular-file-upload/
  */
-angular.module('poimod').controller('upload', function($scope, waypointsService, FileUploader, $location) {
+angular.module('poimod').controller('upload', function($scope, waypointsService, FileUploader, $location, waypointsService) {
 	$scope.test = 'sdsdsd';
 	$scope.cancel = function() {
 		$location.path('/');
@@ -21,40 +21,44 @@ angular.module('poimod').controller('upload', function($scope, waypointsService,
 		}
 	});
 
-//	uploader.onWhenAddingFileFailed = function(item /* {File|FileLikeObject} */, filter, options) {
-//		console.info('onWhenAddingFileFailed', item, filter, options);
-//	};
-//	uploader.onAfterAddingFile = function(fileItem) {
-//		console.info('onAfterAddingFile', fileItem);
-//	};
-//	uploader.onAfterAddingAll = function(addedFileItems) {
-//		console.info('onAfterAddingAll', addedFileItems);
-//	};
-//	uploader.onBeforeUploadItem = function(item) {
-//		console.info('onBeforeUploadItem', item);
-//	};
-//	uploader.onProgressItem = function(fileItem, progress) {
-//		console.info('onProgressItem', fileItem, progress);
-//	};
-//	uploader.onProgressAll = function(progress) {
-//		console.info('onProgressAll', progress);
-//	};
-//	uploader.onSuccessItem = function(fileItem, response, status, headers) {
-//		console.info('onSuccessItem', fileItem, response, status, headers);
-//	};
+	// uploader.onWhenAddingFileFailed = function(item /* {File|FileLikeObject} */, filter, options) {
+	// console.info('onWhenAddingFileFailed', item, filter, options);
+	// };
+	// uploader.onAfterAddingFile = function(fileItem) {
+	// console.info('onAfterAddingFile', fileItem);
+	// };
+	// uploader.onAfterAddingAll = function(addedFileItems) {
+	// console.info('onAfterAddingAll', addedFileItems);
+	// };
+	// uploader.onBeforeUploadItem = function(item) {
+	// console.info('onBeforeUploadItem', item);
+	// };
+	// uploader.onProgressItem = function(fileItem, progress) {
+	// console.info('onProgressItem', fileItem, progress);
+	// };
+	// uploader.onProgressAll = function(progress) {
+	// console.info('onProgressAll', progress);
+	// };
+	// uploader.onSuccessItem = function(fileItem, response, status, headers) {
+	// console.info('onSuccessItem', fileItem, response, status, headers);
+	// };
 	uploader.onErrorItem = function(fileItem, response, status, headers) {
 		console.info('onErrorItem', fileItem, response, status, headers);
 	};
-//	uploader.onCancelItem = function(fileItem, response, status, headers) {
-//		console.info('onCancelItem', fileItem, response, status, headers);
-//	};
+	// uploader.onCancelItem = function(fileItem, response, status, headers) {
+	// console.info('onCancelItem', fileItem, response, status, headers);
+	// };
+
 	uploader.onCompleteItem = function(fileItem, response, status, headers) {
-		//console.info('onCompleteItem', fileItem, response, status, headers);
-		console.info(response);
+		console.info(response.wpt);
+		waypointsService.clear();
+		for (var q = 0; q < response.wpt.length; q++) {
+			waypointsService.add(response.wpt[q]);
+		}
 	};
 	uploader.onCompleteAll = function() {
-		//console.info('onCompleteAll');
-		//$location.path('/');
+	// console.info('onCompleteAll');
+		$location.path('/');
 	};
 
 });
