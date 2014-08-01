@@ -1,19 +1,16 @@
 // http://www.topografix.com/gpx_manual.asp
 
 angular.module('poimod').service('waypointsService', function() {
-	this.nextId = 3;
-	this.waypoints = [{
-		id: 1,
-		name: 'pierwszy',
-		lat: '50.312858',
-		lon: '16.466479'
-	}, {
-		id: 2,
-		name: 'drugi',
-		lat: '50.168971',
-		lon: '16.704033'
-	}];
 
+	this.nextId = localStorage.getItem("poimodNextId") || 1;
+	this.waypoints = JSON.parse(localStorage.getItem("poimodWaypoints")) || [];
+
+	this.save = function() {
+		localStorage.setItem("poimodWaypoints", JSON.stringify(this.waypoints));
+		localStorage.setItem("nextId", this.nextId);
+	};
+
+	// TODO: dodac parametr umozliwiajacy dodawanie bez save na koncu aby umozliwic szybsze importowanie
 	this.add = function(waypoint) {
 		if (waypoint.name == null) {
 			waypoint.name = "New waypoint " + this.nextId;
@@ -22,6 +19,7 @@ angular.module('poimod').service('waypointsService', function() {
 		waypoint.id = this.nextId;
 		this.waypoints.push(waypoint);
 		this.nextId++;
+		this.save();
 	};
 
 	this.removeById = function(id) {
@@ -31,6 +29,7 @@ angular.module('poimod').service('waypointsService', function() {
 				break;
 			}
 		}
+		this.save();
 	};
 
 	this.getById = function(id) {
@@ -43,5 +42,6 @@ angular.module('poimod').service('waypointsService', function() {
 	this.clear = function() {
 		this.waypoints.length = 0;
 		this.nextId = 1;
+		this.save();
 	};
 });

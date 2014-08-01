@@ -19,6 +19,7 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 	};
 
 	$scope.done = function() {
+		waypointsService.save();
 		$location.path('/');
 	};
 	// $scope.ee = 'id: ' + $routeParams.id;
