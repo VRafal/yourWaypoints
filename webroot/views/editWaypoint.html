@@ -1,4 +1,16 @@
 <header class="panel-heading">Edit weypoint</header>
 <div class="panel-body">
-	Name: <input ng-model="waypoint.name" />
+	<label>Name:</label> <input ng-model="waypoint.name" class="form-control" />
+
+	<div class="btn-group">
+		<button type="button" class="btn btn-default" ng-click="done()">Done</button>
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#/" title="" ng-click="cancel()">Cancel</a></li>
+			<li><a href="#/" title="" ng-click="remove()">Remove</a></li>
+		</ul>
+	</div>
 </div>

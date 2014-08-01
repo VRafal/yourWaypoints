@@ -48,7 +48,7 @@
 			</div>
 			<div class="list-group">
 				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
-				<p ng-show="!items.length" class="list-group-item">List empty</p>
+				<p ng-show="!items.length" class="list-group-item">List is empty</p>
 			</div>
 		</section>
 

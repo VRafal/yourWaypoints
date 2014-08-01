@@ -24,15 +24,24 @@ angular.module('poimod').service('waypointsService', function() {
 		this.nextId++;
 	};
 
+	this.removeById = function(id) {
+		for (var q = 0; q < this.waypoints.length; q++) {
+			if (this.waypoints[q].id == id) {
+				this.waypoints.splice(q, 1);
+				break;
+			}
+		}
+	};
+
 	this.getById = function(id) {
 		for (var q = 0; q < this.waypoints.length; q++) {
 			if (this.waypoints[q].id == id) return this.waypoints[q];
 		}
 		return null;
-	}
+	};
 
-	this.clear = function(){
+	this.clear = function() {
 		this.waypoints.length = 0;
 		this.nextId = 1;
-	}
+	};
 });
