@@ -4,7 +4,10 @@ angular.module('poimod', ['ngRoute', 'angularFileUpload'])
 			.when('/', {})
 			.when('/edit/:id', {
 				templateUrl: 'views/editWaypoint.html',
-				controller: 'editWaypoint'
+				controller: 'editWaypoint',
+				resolve: function($q, $location) {
+					console.log($location);
+				}
 			})
 			.when('/upload', {
 				templateUrl: 'views/upload.html',

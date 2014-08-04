@@ -18,7 +18,11 @@ angular.module('poimod').service('waypointsService', function(markersService) {
 		localStorage.setItem("poimodNextId", this.nextId);
 	};
 
-	// TODO: dodac parametr umozliwiajacy dodawanie bez save na koncu aby umozliwic szybsze importowanie
+	/**
+	 * Dodaje nowy waypoit
+	 *
+	 * @TODO: dodac parametr umozliwiajacy dodawanie bez save na koncu aby umozliwic szybsze importowanie
+	 */
 	this.add = function(waypoint) {
 		if (waypoint.name == null) {
 			waypoint.name = "New waypoint " + this.nextId;
@@ -32,6 +36,9 @@ angular.module('poimod').service('waypointsService', function(markersService) {
 		markersService.addMarker(waypoint);
 	};
 
+	/**
+	 * Uzuwa na podstawie id
+	 */
 	this.removeById = function(id) {
 		for (var q = 0; q < this.waypoints.length; q++) {
 			if (this.waypoints[q].id == id) {
@@ -44,6 +51,9 @@ angular.module('poimod').service('waypointsService', function(markersService) {
 		markersService.removeById(id);
 	};
 
+	/**
+	 * Znajduje waypoit na podstawie id
+	 */
 	this.getById = function(id) {
 		for (var q = 0; q < this.waypoints.length; q++) {
 			if (this.waypoints[q].id == id) return this.waypoints[q];
