@@ -66,7 +66,8 @@
 	<script src="/js/controllers/weypointsList.js"></script>
 	<script src="/js/controllers/map.js"></script>
 	<script src="/js/controllers/upload.js"></script>
-	<script src="/js/services/waypointsService.js"></script>
 	<script src="/js/services/mapService.js"></script>
+	<script src="/js/services/waypointsService.js"></script>
+	<script src="/js/services/markersService.js"></script>
 </body>
 </html>

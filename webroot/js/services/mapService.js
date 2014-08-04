@@ -3,6 +3,7 @@ angular.module('poimod').service('mapService', function() {
 
 	this.setMap = function(map) {
 		_map = map;
+		//waypointsService.showMarkers();
 	}
 
 	this.getMap = function() {

@@ -50,7 +50,6 @@ angular.module('poimod').controller('upload', function($scope, waypointsService,
 	// };
 
 	uploader.onCompleteItem = function(fileItem, response, status, headers) {
-		console.info(response.wpt);
 		waypointsService.clear();
 		for (var q = 0; q < response.wpt.length; q++) {
 			waypointsService.add(response.wpt[q]);

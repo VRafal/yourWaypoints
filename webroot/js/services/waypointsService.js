@@ -1,13 +1,21 @@
 // http://www.topografix.com/gpx_manual.asp
 
-angular.module('poimod').service('waypointsService', function() {
+angular.module('poimod').service('waypointsService', function(markersService) {
 
 	this.nextId = localStorage.getItem("poimodNextId") || 1;
 	this.waypoints = JSON.parse(localStorage.getItem("poimodWaypoints")) || [];
 
+	this.showMarkers = function() {
+		if (this.waypoints.length > 0) {
+			for (var q = 0; q < this.waypoints.length; q++) {
+				markersService.addMarker(this.waypoints[q]);
+			}
+		}
+	};
+
 	this.save = function() {
 		localStorage.setItem("poimodWaypoints", JSON.stringify(this.waypoints));
-		localStorage.setItem("nextId", this.nextId);
+		localStorage.setItem("poimodNextId", this.nextId);
 	};
 
 	// TODO: dodac parametr umozliwiajacy dodawanie bez save na koncu aby umozliwic szybsze importowanie
@@ -20,6 +28,8 @@ angular.module('poimod').service('waypointsService', function() {
 		this.waypoints.push(waypoint);
 		this.nextId++;
 		this.save();
+
+		markersService.addMarker(waypoint);
 	};
 
 	this.removeById = function(id) {
@@ -30,6 +40,8 @@ angular.module('poimod').service('waypointsService', function() {
 			}
 		}
 		this.save();
+
+		markersService.removeById(id);
 	};
 
 	this.getById = function(id) {
@@ -43,5 +55,7 @@ angular.module('poimod').service('waypointsService', function() {
 		this.waypoints.length = 0;
 		this.nextId = 1;
 		this.save();
+
+		markersService.removeAll();
 	};
 });

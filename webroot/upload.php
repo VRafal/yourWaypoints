@@ -15,7 +15,9 @@ if (!empty($_FILES)) {
 			'time' => $child->time . '',
 			'sym' => $child->sym . '',
 			'lat' => $child->attributes()->lat . '',
-			'lon' => $child->attributes()->lon . ''
+
+			// Zgodnośc z Google Map API
+			'lng' => $child->attributes()->lon . ''
 		));
 	}
 
