@@ -1,6 +1,10 @@
-// http://www.topografix.com/gpx_manual.asp
+/**
+ * @author: Rafał Bernaczek ak. VRB
+ * @date: Date: 01.08.2014
+ * @url: http://www.topografix.com/gpx_manual.asp
+ */
 
-angular.module('poimod').service('waypointsService', function(markersService) {
+angular.module('poimod').service('waypointsService', function(markersService, mapService) {
 
 	this.nextId = localStorage.getItem("poimodNextId") || 1;
 	this.waypoints = JSON.parse(localStorage.getItem("poimodWaypoints")) || [];
@@ -14,20 +18,21 @@ angular.module('poimod').service('waypointsService', function(markersService) {
 	};
 
 	this.save = function() {
-		localStorage.setItem("poimodWaypoints", JSON.stringify(this.waypoints));
+		localStorage.setItem("poimodWaypoints", JSON.stringify(this.waypoints, function(key, val) {
+			if (key == '$$hashKey') {
+				return undefined;
+			}
+			return val;
+		}));
 		localStorage.setItem("poimodNextId", this.nextId);
 	};
 
 	/**
-	 * Dodaje nowy waypoit
+	 * Dodaje waypoit
 	 *
 	 * @TODO: dodac parametr umozliwiajacy dodawanie bez save na koncu aby umozliwic szybsze importowanie
 	 */
 	this.add = function(waypoint) {
-		if (waypoint.name == null) {
-			waypoint.name = "New waypoint " + this.nextId;
-		}
-
 		waypoint.id = this.nextId;
 		this.waypoints.push(waypoint);
 		this.nextId++;
@@ -35,6 +40,20 @@ angular.module('poimod').service('waypointsService', function(markersService) {
 
 		markersService.addMarker(waypoint);
 	};
+
+	this.createNew = function() {
+		this.waypoints.push({
+			id: this.nextId,
+			name: "New waypoint " + this.nextId,
+			lat: mapService.getMap().getCenter().lat(),
+			lng: mapService.getMap().getCenter().lng(),
+			isNew: true
+		});
+		this.nextId++;
+		this.save();
+
+		markersService.addMarker(this.waypoints[this.waypoints.length - 1]);
+	}
 
 	/**
 	 * Uzuwa na podstawie id

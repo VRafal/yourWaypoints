@@ -1,3 +1,7 @@
+/**
+ * @author: Rafał Bernaczek ak. VRB
+ * @date: Date: 29.07.2014
+ */
 angular.module('poimod').controller('map', function($scope, waypointsService, mapService, $attrs) {
 	var mapArgs = {
 		zoom: 8,
@@ -16,14 +20,6 @@ angular.module('poimod').controller('map', function($scope, waypointsService, ma
 			position: google.maps.ControlPosition.LEFT_CENTER
 		}
 	};
-	//
-	// $scope.mapStyle = [{
-	// "stylers": [{
-	// "hue": "#0066ff"
-	// }, {
-	// "saturation": -34
-	// }]
-	// }];
 
 	var map = new google.maps.Map(document.getElementById('googleMap'), mapArgs);
 	mapService.setMap(map);

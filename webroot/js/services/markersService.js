@@ -1,9 +1,10 @@
 /**
+ * @author: Rafał Bernaczek ak. VRB
+ * @date: Date: 04.08.2014
  * @docs: https://developers.google.com/maps/documentation/javascript/reference?csw=1#Marker
  */
 angular.module('poimod').service('markersService', function(mapService, $location, $rootScope) {
 	var _markers = [];
-	var activeMarker = null;
 
 	var Marker = function(waypoint, map){
 		// @doc: https://developers.google.com/maps/documentation/javascript/symbols
@@ -16,7 +17,8 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 				strokeColor: '#000',
 				strokeWeight: .5,
 				scale: scale,
-				rotation: 180
+				rotation: 180,
+				anchor: new google.maps.Point(260, -50)
 			}
 		}
 
@@ -27,36 +29,40 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 			return getIcon('#378afa', .035);
 		}
 
-		var markerPosition = new google.maps.LatLng(waypoint.lat, waypoint.lng);
-		var m = new google.maps.Marker({
-			position: markerPosition,
+		this.setPosition = function(waypoint) {
+			this.m.setPosition(new google.maps.LatLng(waypoint.lat, waypoint.lng));
+		}
+
+		this.remove = function(){
+			this.m.setMap(null);
+			this.id += 'removed';
+		}
+
+		this.startDrag = function() {
+			this.m.setIcon(getIconEdit());
+			this.m.setDraggable(true);
+		}
+
+		this.stopDrag = function() {
+			this.m.setIcon(getIconNormal());
+			this.m.setDraggable(false);
+		}
+
+		this.id = waypoint.id;
+		this.m = new google.maps.Marker({
+			//position: markerPosition,
 			map: mapService.getMap(),
 			icon: getIconNormal(),
 			animation: google.maps.Animation.DROP,
 			title: waypoint.name
 		});
+		this.setPosition(waypoint);
 
-		google.maps.event.addListener(m, 'click', function() {
+		google.maps.event.addListener(this.m, 'click', function() {
 			$rootScope.$apply(function() {
 				$location.path('/edit/' + waypoint.id);
 			});
 		});
-
-		this.id = waypoint.id;
-
-		this.remove = function(){
-			m.setMap(null);
-			this.id += 'removed';
-		}
-
-		this.startDrag = function() {
-			m.setIcon(getIconEdit());
-		}
-
-		this.stopDrag = function() {
-			m.setIcon(getIconNormal());
-		}
-
 	};
 
 	this.getById = function(id) {

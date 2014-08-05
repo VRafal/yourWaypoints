@@ -1,14 +1,17 @@
 /**
- * https://github.com/nervgh/angular-file-upload/ https://github.com/leon/angular-upload https://github.com/uor/angular-file https://github.com/danialfarid/angular-file-upload https://github.com/twilson63/ngUpload
- *
+ * @author: Rafał Bernaczek ak. VRB
+ * @date: Date: 29.07.2014
+ * @url: https://github.com/nervgh/angular-file-upload/
+ * @url: https://github.com/leon/angular-upload
+ * @url: https://github.com/uor/angular-file
+ * @url: https://github.com/danialfarid/angular-file-upload
+ * @url: https://github.com/twilson63/ngUpload
  * @lib: https://github.com/nervgh/angular-file-upload/
  */
 angular.module('poimod').controller('upload', function($scope, waypointsService, FileUploader, $location, waypointsService) {
-	$scope.test = 'sdsdsd';
 	$scope.cancel = function() {
 		$location.path('/');
 	};
-	// $(":file").filestyle();
 
 	var uploader = $scope.uploader = new FileUploader({
 		url: '/upload.php'
@@ -56,7 +59,6 @@ angular.module('poimod').controller('upload', function($scope, waypointsService,
 		}
 	};
 	uploader.onCompleteAll = function() {
-	// console.info('onCompleteAll');
 		$location.path('/');
 	};
 

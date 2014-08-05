@@ -1,11 +1,33 @@
-angular.module('poimod').controller('editWaypoint', function($scope, $routeParams, waypointsService, $location, markersService) {
+/**
+ * @author: Rafał Bernaczek ak. VRB
+ * @date: Date: 29.07.2014
+ */
+angular.module('poimod').controller('editWaypoint', function($scope, $routeParams, waypointsService, $location, markersService, $rootScope) {
 	$scope.id = $routeParams.id;
 	$scope.waypoint = waypointsService.getById($routeParams.id);
 
+
+	// Marker
 	$scope.marker = markersService.getById($routeParams.id);
 	$scope.marker.startDrag();
 
-	//console.log($location);
+	var clickListenerHandle = google.maps.event.addListener($scope.marker.m, 'dragend', function(e) {
+		$scope.waypoint.lat = e.latLng.lat();
+		$scope.waypoint.lng = e.latLng.lng();
+		$scope.$apply();
+		console.log("dfgdfg" + Math.random());
+	});
+
+	$rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
+		$scope.marker.stopDrag();
+		google.maps.event.removeListener(clickListenerHandle);
+	});
+
+
+	// $scope.$watch('waypoint.lat', function(newVal, oldVal){
+	// console.log('d======');
+	// console.log(newVal);
+	// });
 
 	var waypointCopy = {
 		name: $scope.waypoint.name,
@@ -14,10 +36,11 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 	};
 
 	$scope.cancel = function() {
-		$scope.marker.stopDrag();
 		$scope.waypoint.name = waypointCopy.name;
 		$scope.waypoint.lat = waypointCopy.lat;
 		$scope.waypoint.lng = waypointCopy.lng;
+		$scope.marker.stopDrag();
+		$scope.marker.setPosition($scope.waypoint);
 	};
 
 	$scope.remove = function() {
@@ -30,5 +53,4 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 		waypointsService.save();
 		$location.path('/');
 	};
-	// $scope.ee = 'id: ' + $routeParams.id;
 });

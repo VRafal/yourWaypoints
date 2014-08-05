@@ -37,6 +37,9 @@
 						<li><a href="#/save" title="Save this list as file">Save</a></li>
 						<li class="divider"></li>
 						<li><a href="#/" ng-click="clearList()">Clear list</a></li>
+						<!-- li class="divider"></li>
+						<li><a ng-click="debug()">Debug</a></li>
+						<li><a ng-click="test1()">Test1</a></li -->
 					</ul>
 				</div>
 				<!-- div class="input-group">
@@ -48,7 +51,7 @@
 			</div>
 			<div class="list-group">
 				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
-				<p ng-show="!items.length" class="list-group-item">List is empty</p>
+				<p ng-show="!items.length" class="list-group-item">List is empty <span class="label label-default">New</span></p>
 			</div>
 		</section>
 
@@ -66,6 +69,7 @@
 	<script src="/js/controllers/weypointsList.js"></script>
 	<script src="/js/controllers/map.js"></script>
 	<script src="/js/controllers/upload.js"></script>
+	<script src="/js/controllers/save.js"></script>
 	<script src="/js/services/mapService.js"></script>
 	<script src="/js/services/waypointsService.js"></script>
 	<script src="/js/services/markersService.js"></script>
