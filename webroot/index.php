@@ -50,8 +50,8 @@
 				</div -->
 			</div>
 			<div class="list-group">
-				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}}</a>
-				<p ng-show="!items.length" class="list-group-item">List is empty <span class="label label-default">New</span></p>
+				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}} <span ng-show="item.isNew" class="label label-default">New</span></a>
+				<p ng-show="!items.length" class="list-group-item">List is empty</p>
 			</div>
 		</section>
 

@@ -49,6 +49,7 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 	};
 
 	$scope.done = function() {
+		$scope.waypoint.isNew = false;
 		$scope.marker.stopDrag();
 		waypointsService.save();
 		$location.path('/');

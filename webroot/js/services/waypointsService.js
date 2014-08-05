@@ -22,6 +22,9 @@ angular.module('poimod').service('waypointsService', function(markersService, ma
 			if (key == '$$hashKey') {
 				return undefined;
 			}
+			if (key == 'isNew') {
+				return undefined;
+			}
 			return val;
 		}));
 		localStorage.setItem("poimodNextId", this.nextId);
