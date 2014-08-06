@@ -1,9 +1,15 @@
-<!DOCTYPE HTML>
+<?php
+/**
+ * @author Rafał Bernaczek ak. VRB
+ * @example http://www.misovic.net/projects/
+ *
+ */
+?><!DOCTYPE HTML>
 <html class="no-js" ng-app="poimod">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test</title>
+	<title>POImod - beta</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,7 +29,7 @@
 	<div id="#container">
 		<div id="googleMap" latitude="51.111681" longitude="17.069111" ng-controller="map"></div>
 
-		<section id="weypointsList" ng-controller="weypointsList" class="panel panel-primary">
+		<section id="weypointsListPanel" ng-controller="weypointsList" class="panel panel-primary">
 			<header class="panel-heading">Waypoints</header>
 			<div class="panel-body">
 				<div class="btn-group">
@@ -33,23 +39,14 @@
 						<span class="sr-only">Toggle Dropdown</span>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<li><a href="#/upload" title="Upload new list from local file">Upload</a></li>
-						<li><a href="#/save" title="Save this list as file">Save</a></li>
+						<li><a href="#/upload" title="Upload new list from local file">Upload GPX file</a></li>
+						<li ng-class="(!items.length) ? 'disabled' : ''" class=""><a href="#/save" title="Save this list as file">Save GPX file</a></li>
 						<li class="divider"></li>
 						<li><a href="#/" ng-click="clearList()">Clear list</a></li>
-						<!-- li class="divider"></li>
-						<li><a ng-click="debug()">Debug</a></li>
-						<li><a ng-click="test1()">Test1</a></li -->
 					</ul>
 				</div>
-				<!-- div class="input-group">
-					<input type="text" ng-model="qeryFilter" class="form-control" placeholder="filter" />
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">Clear</button>
-					</span>
-				</div -->
 			</div>
-			<div class="list-group">
+			<div id="weypointsList" class="list-group">
 				<a ng-repeat="item in items" href="#/edit/{{item.id}}" title="Click to show {{item.name}}" class="list-group-item">{{item.name}} <span ng-show="item.isNew" class="label label-default">New</span></a>
 				<p ng-show="!items.length" class="list-group-item">List is empty</p>
 			</div>

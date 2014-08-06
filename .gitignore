@@ -8,3 +8,5 @@ wp
 nbproject
 /webroot/uploads/*
 !/webroot/uploads/index.php
+webroot/export/*
+!/webroot/export/index.php

@@ -15,7 +15,6 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 		$scope.waypoint.lat = e.latLng.lat();
 		$scope.waypoint.lng = e.latLng.lng();
 		$scope.$apply();
-		console.log("dfgdfg" + Math.random());
 	});
 
 	$rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
@@ -23,7 +22,7 @@ angular.module('poimod').controller('editWaypoint', function($scope, $routeParam
 		google.maps.event.removeListener(clickListenerHandle);
 	});
 
-
+	// TODO:
 	// $scope.$watch('waypoint.lat', function(newVal, oldVal){
 	// console.log('d======');
 	// console.log(newVal);

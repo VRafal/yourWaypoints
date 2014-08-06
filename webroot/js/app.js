@@ -20,3 +20,17 @@ angular.module('poimod', ['ngRoute', 'angularFileUpload']).config(['$routeProvid
 		redirectTo: '/'
 	});
 }]);
+
+(function($) {
+	var resizeMap = function() {
+		var wh = $(window).height();
+		$('#googleMap').css({
+			height: wh
+		});
+		$('#weypointsList').css({
+			'max-height': wh - 200
+		});
+	}
+	$(window).resize(resizeMap);
+	resizeMap();
+})(jQuery);
