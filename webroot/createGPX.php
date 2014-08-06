@@ -15,7 +15,7 @@ $my->filename = "poimod_" . time() . "_" . rand(100000, 999999) . ".gpx";
 $my->outputDirectory = "./export/";
 
 foreach ($objData as $point) {
-	$my->addPoint($point->name, "", "", "", "", $point->lat, $point->lng);
+	$my->addPoint($point->name, "", "", "", $point->desc, $point->lat, $point->lng);
 }
 
 $my->CreateGPXfile();

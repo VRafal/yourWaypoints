@@ -47,9 +47,11 @@ angular.module('poimod').service('waypointsService', function(markersService, ma
 	this.createNew = function() {
 		this.waypoints.push({
 			id: this.nextId,
-			name: "New waypoint " + this.nextId,
+			name: 'New waypoint ' + this.nextId,
+			desc: '',
 			lat: mapService.getMap().getCenter().lat(),
 			lng: mapService.getMap().getCenter().lng(),
+
 			isNew: true
 		});
 		this.nextId++;

@@ -22,8 +22,5 @@ angular.module('poimod').controller('weypointsList', function($scope, $location,
 		});
 	};
 
-	$scope.test1 = function() {
-		console.log('ssss');
-	};
-
+	//$('#ssdfffsdf').tooltip();
 });

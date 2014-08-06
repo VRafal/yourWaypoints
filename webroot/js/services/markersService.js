@@ -29,6 +29,17 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 			return getIcon('#378afa', .035);
 		}
 
+		var getElement = function(m){
+			//gmnoprint
+			var oldTitle = m.getTitle();
+			var tmpTitle = 'cpecialFinder2343';
+			m.setTitle(tmpTitle);
+			console.log(m.getTitle());
+			var element = $('div[title=\'' + tmpTitle + '\']');
+			m.setTitle(oldTitle);
+			return element;
+		}
+
 		this.setPosition = function(waypoint) {
 			this.m.setPosition(new google.maps.LatLng(waypoint.lat, waypoint.lng));
 		}
@@ -57,6 +68,10 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 			title: waypoint.name
 		});
 		this.setPosition(waypoint);
+
+		//this.m.$.tooltip();
+//		this.m.id= 'rafal' + Math.random();
+//		console.log(getElement(this.m));
 
 		google.maps.event.addListener(this.m, 'click', function() {
 			$rootScope.$apply(function() {

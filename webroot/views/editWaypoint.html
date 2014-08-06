@@ -1,9 +1,10 @@
 <header class="panel-heading">Edit weypoint</header>
-<div class="panel-body">
+<div class="panel-body" id="editWaypoint">
 	<div class="group">
 		<label>Name:</label> <input ng-model="waypoint.name" class="form-control" />
 		<label>Latitude:</label> <input ng-model="waypoint.lat" class="form-control" />
 		<label>Longitude:</label> <input ng-model="waypoint.lng" class="form-control" />
+		<label>Description:</label> <textarea ng-model="waypoint.desc" class="form-control"></textarea>
 	</div>
 	<div class="btn-group">
 		<button type="button" class="btn btn-default" ng-click="done()">Done</button>
