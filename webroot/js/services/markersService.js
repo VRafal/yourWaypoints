@@ -33,9 +33,10 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 			//gmnoprint
 			var oldTitle = m.getTitle();
 			var tmpTitle = 'cpecialFinder2343';
-			m.setTitle(tmpTitle);
-			console.log(m.getTitle());
-			var element = $('div[title=\'' + tmpTitle + '\']');
+			//m.setTitle(tmpTitle);
+			console.log(m.id);
+			//var element = $('div[title=\'' + tmpTitle + '\']');
+			var element = $('div[title=\'Fajne\']');
 			m.setTitle(oldTitle);
 			return element;
 		}
@@ -70,8 +71,9 @@ angular.module('poimod').service('markersService', function(mapService, $locatio
 		this.setPosition(waypoint);
 
 		//this.m.$.tooltip();
-//		this.m.id= 'rafal' + Math.random();
-//		console.log(getElement(this.m));
+		//this.m.id= 'rafal' + Math.random();
+		//console.log(getElement(this.m));
+		//console.log(this.m.getShape());
 
 		google.maps.event.addListener(this.m, 'click', function() {
 			$rootScope.$apply(function() {
