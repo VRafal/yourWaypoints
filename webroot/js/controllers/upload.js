@@ -8,7 +8,7 @@
  * @url: https://github.com/twilson63/ngUpload
  * @lib: https://github.com/nervgh/angular-file-upload/
  */
-angular.module('poimod').controller('upload', function($scope, waypointsService, FileUploader, $location, waypointsService) {
+angular.module('poimod').controller('upload', function($scope, waypointsService, FileUploader, $location, mapService) {
 	$scope.cancel = function() {
 		$location.path('/');
 	};
@@ -54,9 +54,12 @@ angular.module('poimod').controller('upload', function($scope, waypointsService,
 
 	uploader.onCompleteItem = function(fileItem, response, status, headers) {
 		waypointsService.clear();
+
+		var wp = [];
 		for (var q = 0; q < response.wpt.length; q++) {
-			waypointsService.add(response.wpt[q]);
+			wp.push(waypointsService.add(response.wpt[q]));
 		}
+		mapService.centerMap(wp);
 	};
 	uploader.onCompleteAll = function() {
 		$location.path('/');

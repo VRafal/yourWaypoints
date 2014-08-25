@@ -42,6 +42,7 @@ angular.module('poimod').service('waypointsService', function(markersService, ma
 		this.save();
 
 		markersService.addMarker(waypoint);
+		return waypoint;
 	};
 
 	this.createNew = function() {
