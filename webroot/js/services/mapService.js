@@ -7,7 +7,6 @@ angular.module('poimod').service('mapService', function() {
 
 	this.setMap = function(map) {
 		_map = map;
-		// waypointsService.showMarkers();
 	}
 
 	this.getMap = function() {
@@ -15,6 +14,8 @@ angular.module('poimod').service('mapService', function() {
 	}
 
 	this.centerMap = function(waypointsList){
+		if (waypointsList == null || waypointsList.length == 0) return;
+
 		var latlngbounds = new google.maps.LatLngBounds();
 		for (q=0; q<waypointsList.length; q++){
 			var latLng = new google.maps.LatLng(waypointsList[q].lat, waypointsList[q].lng);

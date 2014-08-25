@@ -24,5 +24,6 @@ angular.module('poimod').controller('map', function($scope, waypointsService, ma
 	var map = new google.maps.Map(document.getElementById('googleMap'), mapArgs);
 	mapService.setMap(map);
 	waypointsService.showMarkers();
+	mapService.centerMap(waypointsService.waypoints);
 
 });

@@ -55,11 +55,11 @@ angular.module('poimod').controller('upload', function($scope, waypointsService,
 	uploader.onCompleteItem = function(fileItem, response, status, headers) {
 		waypointsService.clear();
 
-		var wp = [];
 		for (var q = 0; q < response.wpt.length; q++) {
-			wp.push(waypointsService.add(response.wpt[q]));
+			waypointsService.add(response.wpt[q]);
 		}
-		mapService.centerMap(wp);
+		mapService.centerMap(waypointsService.waypoints);
+
 	};
 	uploader.onCompleteAll = function() {
 		$location.path('/');

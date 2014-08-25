@@ -16,11 +16,8 @@ angular.module('poimod').controller('weypointsList', function($scope, $location,
 	};
 
 	$scope.debug = function() {
-		console.log('---------------');
 		angular.forEach(waypointsService.waypoints, function(o) {
 			console.log(o.lat + ', ' + o.lng);
 		});
 	};
-
-	//$('#ssdfffsdf').tooltip();
 });
